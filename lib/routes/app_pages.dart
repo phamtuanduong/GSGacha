@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:hs_gacha/modules/home_page/bindings/home_binding.dart';
+import 'package:hs_gacha/modules/video_effect/binding/video_effect_binding.dart';
+import 'package:hs_gacha/modules/video_effect/page/video_effect_page.dart';
 
-import '../bindings/game_main_binding.dart';
-import '../game_screens/game_main.dart';
+import '../modules/home_page/game_screens/game_main.dart';
 
 part 'app_routes.dart';
 
@@ -14,7 +16,12 @@ class AppPages {
     GetPage(
       name: Routes.gameMain,
       page: () => const GameMainScreen(),
-      binding: GameMainBinding(),
+      binding: HomeBinding(),
+    ),
+    GetPage(
+      name: Routes.videoEffect,
+      page: () => const VideoEffectPage(),
+      binding: VideoEffectBinding(),
     ),
   ];
 }
