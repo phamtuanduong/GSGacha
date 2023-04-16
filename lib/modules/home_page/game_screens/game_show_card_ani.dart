@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hs_gacha/cores/common/data_loader.dart';
 import 'package:hs_gacha/routes/app_pages.dart';
-
-import '../data_loader.dart';
 
 class GameShowCardAnimation extends StatelessWidget {
   const GameShowCardAnimation({super.key});
@@ -18,6 +17,7 @@ class GameShowCardAnimation extends StatelessWidget {
           child: Text("back"),
           onPressed: () {
             Get.offAllNamed(Routes.gameMain);
+            // Get.back(closeOverlays: true);
           },
         )),
       ],

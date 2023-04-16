@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/game_main_controller.dart';
-import '../data_loader.dart';
 
-class GameMainScreen extends StatelessWidget {
+import 'package:hs_gacha/cores/common/data_loader.dart';
+import 'package:hs_gacha/modules/home_page/controllers/home_controller.dart';
+
+class GameMainScreen extends GetView<HomeController> {
   const GameMainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.find<GameMainController>();
     return Scaffold(
       body: Stack(
         children: [
@@ -54,9 +54,9 @@ class GameMainScreen extends StatelessWidget {
             bottom: 30,
             right: 35,
             child: Row(children: [
-              controller.buttonWishOne,
+              controller.buttonWishOne.value!,
               const SizedBox(width: 15),
-              controller.buttonWishMany
+              controller.buttonWishMany.value!
             ]),
           ),
         ],

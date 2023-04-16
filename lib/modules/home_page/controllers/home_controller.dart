@@ -1,22 +1,31 @@
+// ignore_for_file: file_names
+import 'dart:developer';
+
 import 'package:flame/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hs_gacha/data_loader.dart';
+import 'package:hs_gacha/cores/common/app_config.dart';
+import 'package:hs_gacha/cores/common/data_loader.dart';
 import 'package:hs_gacha/models/model.dart';
+import 'package:hs_gacha/cores/common/config.dart';
+import 'package:hs_gacha/routes/app_pages.dart';
 
-import '../config.dart';
-import '../game_screens/game_load_effect.dart';
+class HomeController extends GetxController {
+  Rxn<SpriteButton> buttonWishOne = Rxn<SpriteButton>();
+  Rxn<SpriteButton> buttonWishMany = Rxn<SpriteButton>();
 
-class GameMainController extends GetxController {
-  late SpriteButton buttonWishOne;
-  late SpriteButton buttonWishMany;
-  late List<Widget> listButtonGachaHeader;
+  RxList<Widget> listButtonGachaHeader = <Widget>[].obs;
 
   @override
-  void onInit() {
+  void onInit() async {
+    log('initialize GameMainController', name: AppConfig.packageName);
+    await initData();
     super.onInit();
+  }
 
-    buttonWishOne = DataLoader.loadButton(
+  Future<void> initData() async {
+    listButtonGachaHeader.clear();
+    buttonWishOne.value = DataLoader.loadButton(
       'btn_wish.png',
       'btn_wish_press.png',
       355 * .65,
@@ -24,18 +33,19 @@ class GameMainController extends GetxController {
       () => () {},
       _btnTitleWish('SpecialWish.png', 1),
     );
-    buttonWishMany = DataLoader.loadButton(
+
+    buttonWishMany.value = DataLoader.loadButton(
       'btn_wish.png',
       'btn_wish_press.png',
       355 * .65,
       88 * .68,
       () => () {
-        Get.to(const GameLoadEffect(videoType: VideoEffectType.fivestarmuti));
+        Get.toNamed(Routes.videoEffect, arguments: [
+          {'videoType': VideoEffectType.fivestarmuti}
+        ]);
       },
       _btnTitleWish('SpecialWish.png', 10),
     );
-
-    listButtonGachaHeader = [];
 
     listButtonGachaHeader.add(DataLoader.loadButton(
       'buttonGacha/noelle.png',
@@ -45,7 +55,6 @@ class GameMainController extends GetxController {
       () => () {},
       const SizedBox(),
     ));
-
     listButtonGachaHeader.add(const SizedBox(width: 20));
 
     listButtonGachaHeader.add(DataLoader.loadButton(
