@@ -8,7 +8,6 @@ class VideoEffectPage extends GetView<VideoEffectController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.checkEndVideo(controller.meeduPlayerController.value);
     return SizedBox(
       width: Get.size.width,
       height: Get.size.height,

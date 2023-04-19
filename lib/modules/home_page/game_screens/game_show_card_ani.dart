@@ -14,9 +14,11 @@ class GameShowCardAnimation extends StatelessWidget {
         Positioned.fill(child: DataLoader.imageMainGachaBG),
         Positioned(
             child: TextButton(
-          child: Text("back"),
+          child: const Text("back"),
           onPressed: () {
-            Get.offAllNamed(Routes.gameMain);
+            Get.offAllNamed(
+              Routes.gameMain,
+            );
             // Get.back(closeOverlays: true);
           },
         )),

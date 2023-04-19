@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flame/widgets.dart';
 import 'package:flutter_meedu_videoplayer/meedu_player.dart';
 import 'package:hs_gacha/models/model.dart';
+import 'package:hs_gacha/models/video_effect_show.dart';
+import 'package:hs_gacha/models/video_effect_show_type.dart';
 
 class DataLoader {
   static late Image imageMainBG;
@@ -10,6 +12,8 @@ class DataLoader {
 
   static List<VideoEffect> listVideoEffect = [];
 
+  static List<VideoEffectShow> listVideoEffectShow = [];
+
   static void load() async {
     imageMainBG = Image.asset('assets/images/background.png', fit: BoxFit.fill);
 
@@ -17,28 +21,41 @@ class DataLoader {
         Image.asset('assets/images/Wish_template.png', fit: BoxFit.fill);
 
     videoMainBGController =
-        loadVideo('assets/videos/Gi_Wishbg.mp4', isLoop: true);
+        await loadVideo('assets/videos/Gi_Wishbg.mp4', isLoop: true);
 
     listVideoEffect.add(VideoEffect(
         type: VideoEffectType.fivestarmuti,
-        videoController: loadVideo('assets/videos/fivestarmulti.mp4')));
+        videoController: await loadVideo('assets/videos/fivestarmulti.mp4')));
     listVideoEffect.add(VideoEffect(
         type: VideoEffectType.fivestar,
-        videoController: loadVideo('assets/videos/fivestar.mp4')));
+        videoController: await loadVideo('assets/videos/fivestar.mp4')));
 
     listVideoEffect.add(VideoEffect(
         type: VideoEffectType.fourstarmuti,
-        videoController: loadVideo('assets/videos/fourstarmulti.mp4')));
+        videoController: await loadVideo('assets/videos/fourstarmulti.mp4')));
     listVideoEffect.add(VideoEffect(
         type: VideoEffectType.fourstar,
-        videoController: loadVideo('assets/videos/fourstar.mp4')));
+        videoController: await loadVideo('assets/videos/fourstar.mp4')));
 
     listVideoEffect.add(VideoEffect(
         type: VideoEffectType.threestar,
-        videoController: loadVideo('assets/videos/threestar.mp4')));
+        videoController: await loadVideo('assets/videos/threestar.mp4')));
+
+    listVideoEffectShow.add(VideoEffectShow(
+        type: VideoEffectShowType.fivestar,
+        videoController: await loadVideo('assets/videos/fivestareffect.m4v')));
+
+    listVideoEffectShow.add(VideoEffectShow(
+        type: VideoEffectShowType.fourstar,
+        videoController: await loadVideo('assets/videos/fourstareffect.m4v')));
+
+    listVideoEffectShow.add(VideoEffectShow(
+        type: VideoEffectShowType.threestar,
+        videoController: await loadVideo('assets/videos/threestarnew.m4v')));
   }
 
-  static MeeduPlayerController loadVideo(String src, {bool isLoop = false}) {
+  static Future<MeeduPlayerController> loadVideo(String src,
+      {bool isLoop = false}) async {
     MeeduPlayerController controller;
     controller = MeeduPlayerController(
       controlsStyle: ControlsStyle.primary,
@@ -46,7 +63,7 @@ class DataLoader {
       fits: [BoxFit.fitWidth],
     );
 
-    controller.setDataSource(
+    await controller.setDataSource(
       DataSource(
         type: DataSourceType.asset,
         source: src,

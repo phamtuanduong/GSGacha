@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:hs_gacha/cores/common/data_loader.dart';
+import 'package:hs_gacha/models/video_effect_show_type.dart';
 import 'package:hs_gacha/modules/home_page/controllers/home_controller.dart';
 
 class GameMainScreen extends GetView<HomeController> {
@@ -59,6 +60,16 @@ class GameMainScreen extends GetView<HomeController> {
               controller.buttonWishMany.value!
             ]),
           ),
+          Positioned(
+              child: TextButton(
+            child: const Text("test"),
+            onPressed: () {
+              Get.offAllNamed('/videoEffectShow', arguments: [
+                {'videoType': VideoEffectShowType.fivestar}
+              ]);
+              // Get.back(closeOverlays: true);
+            },
+          )),
         ],
       ),
     );

@@ -36,8 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.5
-  flame: ^1.6.0
-  flutter_meedu_videoplayer: ^4.1.0
+  flame: ^1.7.3
+  flame_audio: ^2.0.1
+  flutter_meedu_videoplayer: ^4.2.0
   flutter_smart_dialog: ^4.9.0+5
 
 dev_dependencies:
@@ -69,6 +70,10 @@ flutter:
     - assets/images/ui/
     - assets/images/buttonGacha/
     - assets/videos/
+    - assets/images/box/
+    - assets/images/box/blue/
+    - assets/images/box/gold/
+    - assets/images/box/purple/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
