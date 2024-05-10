@@ -17,12 +17,15 @@ class PlayerGame extends FlameGame {
   List<SpriteAnimationComponent> players = [];
   List<CardComponentAnimation> listConponent = [];
   List<Vector2> listPositon = [];
+  List<Vector2> listCardPositon = [];
 
   Vector2 sizeCardGoldEffect = Vector2(253 * 0.6, 1080 * 0.6);
   Vector2 sizeCardGoldEffect2 = Vector2(148 * 0.6, 1080 * 0.6);
 
   Vector2 sizeCardPutpleEffect = Vector2(253 * 0.6, 1080 * 0.6);
   Vector2 sizeCardPutple2Effect = Vector2(253 * 0.6, 1080 * 0.6);
+
+  double lastItemPositionX = 0;
 
   @override
   Color backgroundColor() => Colors.transparent;
@@ -60,7 +63,10 @@ class PlayerGame extends FlameGame {
       listConponent.add(CardComponentAnimation(0));
     }
 
+    //print(listCardPositon.length);
+    // lastItemPositionX = players.last.position.x + players.last.size.x;
     for (var i = 9; i >= 0; i--) {
+      //listPositon[i].x += (size.x - lastItemPositionX) / 2;
       add(listConponent[i]);
     }
   }
@@ -72,5 +78,14 @@ class PlayerGame extends FlameGame {
     }
     sprite_golds = [];
     super.onRemove();
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    for (var element in listConponent) {
+      element.updatePos();
+    }
   }
 }
